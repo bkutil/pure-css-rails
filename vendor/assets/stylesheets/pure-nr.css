@@ -1,5 +1,5 @@
 /*!
-Pure v0.1.1-pre
+Pure v0.2.0
 Copyright 2013 Yahoo! Inc. All rights reserved.
 Licensed under the BSD License.
 https://github.com/yui/pure/blob/master/LICENSE.md
@@ -550,20 +550,17 @@ table {
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
-
 /* Firefox: Get rid of the inner focus border */
-.pure-button::-moz-focus-inner{
+.pure-button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
 
-a:focus {
-    outline: none;
-}
-
+/*csslint unqualified-attributes:false, outline-none:false*/
 
 .pure-button {
     font-size: 100%;
@@ -577,8 +574,6 @@ a:focus {
     border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
     background-color: #E6E6E6;
     text-decoration: none;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
     -webkit-font-smoothing: antialiased;
     /* Transitions */
@@ -589,30 +584,29 @@ a:focus {
     transition: 0.1s linear box-shadow;
 }
 
-
 .pure-button-hover,
-.pure-button:hover {
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#00000000', GradientType=0);
-
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0, 0.05)), to(rgba(0,0,0, 0.05)));
-    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.15));
-    background-image: -moz-linear-gradient(top, rgba(0,0,0, 0.05) 0%, rgba(0,0,0, 0.05));
-    background-image: -ms-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.15));
-    background-image: -o-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.05));
-    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.05));
+.pure-button:hover,
+.pure-button:focus {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0, 0.05)), to(rgba(0,0,0, 0.10)));
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: -moz-linear-gradient(top, rgba(0,0,0, 0.05) 0%, rgba(0,0,0, 0.10));
+    background-image: -ms-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: -o-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
 }
-
+.pure-button:focus {
+    outline: 0;
+}
 .pure-button-active,
 .pure-button:active {
-    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
-    -moz-box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
     box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
 }
 
 .pure-button[disabled],
 .pure-button-disabled,
 .pure-button-disabled:hover,
+.pure-button-disabled:focus,
 .pure-button-disabled:active {
     border: none;
     background-image: none;
@@ -626,7 +620,7 @@ a:focus {
 }
 
 .pure-button-hidden {
-    display:none;
+    display: none;
 }
 
 /* Firefox: Get rid of the inner focus border */
@@ -635,18 +629,12 @@ a:focus {
     border: 0;
 }
 
-
-/* Sam */
 .pure-button-primary,
 .pure-button-selected,
 a.pure-button-primary,
 a.pure-button-selected {
     background-color: rgb(0, 120, 231);
     color: #fff;
-}
-
-.pure-button:-moz-focusring {
-    outline-color: rgba(0, 0, 0, 0.85);
 }
 
 /* This page has Normalize.css form-specific style rules applied to a .pure-form context */
@@ -799,172 +787,249 @@ a.pure-button-selected {
     vertical-align: top; /* 2 */
 }
 
-.pure-form input,
-.pure-form select {
-  padding: 0.5em 0.6em;
-  display: inline-block;
-  border: 1px solid #ccc;
-  font-size: 0.8em;
-  box-shadow: inset 0 1px 3px #ddd;
-  border-radius: 4px;
-  -webkit-transition: 0.3s linear border;
-  -moz-transition: 0.3s linear border;
-  -ms-transition: 0.3s linear border;
-  -o-transition: 0.3s linear border;
-  transition: 0.3s linear border;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
+.pure-form input[type="text"],
+.pure-form input[type="password"],
+.pure-form input[type="email"],
+.pure-form input[type="url"],
+.pure-form input[type="date"],
+.pure-form input[type="month"],
+.pure-form input[type="time"],
+.pure-form input[type="datetime"],
+.pure-form input[type="datetime-local"],
+.pure-form input[type="week"],
+.pure-form input[type="number"],
+.pure-form input[type="search"],
+.pure-form input[type="tel"],
+.pure-form input[type="color"],
+.pure-form select,
+.pure-form textarea {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 0.8em;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    -webkit-transition: 0.3s linear border;
+    -moz-transition: 0.3s linear border;
+    -ms-transition: 0.3s linear border;
+    -o-transition: 0.3s linear border;
+    transition: 0.3s linear border;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
-.pure-form input:focus,
-.pure-form select:focus {
-  outline: 0;
-  outline: thin dotted \9; /* IE6-9 */
-  border-color: #129FEA;
+.pure-form input[type="text"]:focus,
+.pure-form input[type="password"]:focus,
+.pure-form input[type="email"]:focus,
+.pure-form input[type="url"]:focus,
+.pure-form input[type="date"]:focus,
+.pure-form input[type="month"]:focus,
+.pure-form input[type="time"]:focus,
+.pure-form input[type="datetime"]:focus,
+.pure-form input[type="datetime-local"]:focus,
+.pure-form input[type="week"]:focus,
+.pure-form input[type="number"]:focus,
+.pure-form input[type="search"]:focus,
+.pure-form input[type="tel"]:focus,
+.pure-form input[type="color"]:focus,
+.pure-form select:focus,
+.pure-form textarea:focus {
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    border-color: #129FEA;
+}
+
+.pure-form input[type="file"]:focus,
+.pure-form input[type="radio"]:focus,
+.pure-form input[type="checkbox"]:focus {
+    outline: thin dotted #333;
+    outline: 1px auto #129FEA;
 }
 .pure-form .pure-checkbox,
 .pure-form .pure-radio {
-  margin: 0.5em 0;
-  display: block;
+    margin: 0.5em 0;
+    display: block;
 }
-.pure-form input[disabled],
+.pure-form input[type="text"][disabled],
+.pure-form input[type="password"][disabled],
+.pure-form input[type="email"][disabled],
+.pure-form input[type="url"][disabled],
+.pure-form input[type="date"][disabled],
+.pure-form input[type="month"][disabled],
+.pure-form input[type="time"][disabled],
+.pure-form input[type="datetime"][disabled],
+.pure-form input[type="datetime-local"][disabled],
+.pure-form input[type="week"][disabled],
+.pure-form input[type="number"][disabled],
+.pure-form input[type="search"][disabled],
+.pure-form input[type="tel"][disabled],
+.pure-form input[type="color"][disabled],
 .pure-form select[disabled],
 .pure-form textarea[disabled],
 .pure-form input[readonly],
 .pure-form select[readonly],
 .pure-form textarea[readonly] {
-  cursor: not-allowed;
-  background-color: #eaeded;
-  color: #cad2d3;
-  border-color: transparent;
+    cursor: not-allowed;
+    background-color: #eaeded;
+    color: #cad2d3;
+    border-color: transparent;
 }
 .pure-form input:focus:invalid,
 .pure-form textarea:focus:invalid,
 .pure-form select:focus:invalid {
-  color: #b94a48;
-  border: 1px solid #ee5f5b;
+    color: #b94a48;
+    border: 1px solid #ee5f5b;
 }
 .pure-form input:focus:invalid:focus,
 .pure-form textarea:focus:invalid:focus,
 .pure-form select:focus:invalid:focus {
-  border-color: #e9322d;
+    border-color: #e9322d;
+}
+.pure-form input[type="file"]:focus:invalid:focus,
+.pure-form input[type="radio"]:focus:invalid:focus,
+.pure-form input[type="checkbox"]:focus:invalid:focus {
+    outline-color: #e9322d;
 }
 .pure-form select {
-  border: 1px solid #ccc;
-  background-color: white;
+    border: 1px solid #ccc;
+    background-color: white;
 }
 .pure-form select[multiple] {
-  height: auto;
+    height: auto;
 }
 .pure-form label {
-  margin: 0.5em 0 0.2em;
-  color: #999;
-  font-size:90%;
+    margin: 0.5em 0 0.2em;
+    color: #999;
+    font-size: 90%;
 }
 .pure-form fieldset {
-  margin: 0;
-  padding: 0.35em 0 0.75em;
-  border: 0;
+    margin: 0;
+    padding: 0.35em 0 0.75em;
+    border: 0;
 }
 .pure-form legend {
-  display: block;
-  width: 100%;
-  padding: 0.3em 0;
-  margin-bottom: 0.3em;
-  font-size: 125%;
-  color: #333;
-  border-bottom: 1px solid #e5e5e5;
+    display: block;
+    width: 100%;
+    padding: 0.3em 0;
+    margin-bottom: 0.3em;
+    font-size: 125%;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.pure-form.pure-form-stacked input[type='text'],
-.pure-form.pure-form-stacked select,
-.pure-form.pure-form-stacked label {
-  display: block;
+.pure-form-stacked input[type="text"],
+.pure-form-stacked input[type="password"],
+.pure-form-stacked input[type="email"],
+.pure-form-stacked input[type="url"],
+.pure-form-stacked input[type="date"],
+.pure-form-stacked input[type="month"],
+.pure-form-stacked input[type="time"],
+.pure-form-stacked input[type="datetime"],
+.pure-form-stacked input[type="datetime-local"],
+.pure-form-stacked input[type="week"],
+.pure-form-stacked input[type="number"],
+.pure-form-stacked input[type="search"],
+.pure-form-stacked input[type="tel"],
+.pure-form-stacked input[type="color"],
+.pure-form-stacked select,
+.pure-form-stacked label {
+    display: block;
 }
 
 .pure-form-aligned input,
 .pure-form-aligned textarea,
 .pure-form-aligned select,
-.pure-form-aligned .pure-help-inline {
-  display: inline-block;
-  *display: inline; /* IE7 inline-block hack */
-  *zoom: 1;
-  vertical-align: middle;
+/* NOTE: pure-help-inline is deprecated. Use .pure-form-message-inline instead. */
+.pure-form-aligned .pure-help-inline,
+.pure-form-message-inline {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
 }
 
-/* aligned Forms */
+/* Aligned Forms */
 .pure-form-aligned .pure-control-group {
-  margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
 .pure-form-aligned .pure-control-group label {
-  text-align: right;
-  display: inline-block;
-  vertical-align: middle;
-  width: 10em;
-  margin: 0 1em 0 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    width: 10em;
+    margin: 0 1em 0 0;
 }
 .pure-form-aligned .pure-controls {
-  margin: 1.5em 0 0 10em;
+    margin: 1.5em 0 0 10em;
 }
 
 /* Rounded Inputs */
 .pure-form .pure-input-rounded {
-  border-radius: 20px;
-  padding-left:1em;
+    border-radius: 20px;
+    padding-left: 1em;
 }
 
 /* Grouped Inputs */
 .pure-form .pure-group fieldset {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .pure-form .pure-group input {
-  display: block;
-  padding: 10px;
-  margin: 0;
-  border-radius: 0;
-  position: relative;
-  top: -1px;
+    display: block;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    position: relative;
+    top: -1px;
 }
 .pure-form .pure-group input:focus {
-  z-index: 2;
+    z-index: 2;
 }
 .pure-form .pure-group input:first-child {
-  top: 1px;
-  border-radius: 4px 4px 0 0;
+    top: 1px;
+    border-radius: 4px 4px 0 0;
 }
 .pure-form .pure-group input:last-child {
-  top: -2px;
-  border-radius: 0 0 4px 4px;
+    top: -2px;
+    border-radius: 0 0 4px 4px;
 }
 .pure-form .pure-group button {
-  margin: 0.35em 0;
+    margin: 0.35em 0;
 }
 
 .pure-form .pure-input-1 {
-  width: 100%;
+    width: 100%;
 }
 .pure-form .pure-input-2-3 {
-  width: 66%;
+    width: 66%;
 }
 .pure-form .pure-input-1-2 {
-  width: 50%;
+    width: 50%;
 }
 .pure-form .pure-input-1-3 {
-  width: 33%;
+    width: 33%;
 }
 .pure-form .pure-input-1-4 {
-  width: 25%;
+    width: 25%;
 }
 
 /* Inline help for forms */
-.pure-form .pure-help-inline {
-  display: inline-block;
-  padding-left: 0.3em;
-  color: #666;
-  vertical-align: middle;
-  font-size: 90%;
+/* NOTE: pure-help-inline is deprecated. Use .pure-form-message-inline instead. */
+.pure-form .pure-help-inline,
+.pure-form-message-inline {
+    display: inline-block;
+    padding-left: 0.3em;
+    color: #666;
+    vertical-align: middle;
+    font-size: 90%;
+}
+
+/* Block help for forms */
+.pure-form-message {
+    display: block;
+    color: #666;
+    font-size: 90%;
 }
 
 .pure-g {
@@ -985,7 +1050,8 @@ a.pure-button-selected {
 
 .pure-u {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+    *display: inline; /* IE < 8: fake inline-block */
+    zoom: 1;
     letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
@@ -1021,7 +1087,8 @@ a.pure-button-selected {
 .pure-u-19-24,
 .pure-u-23-24 {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+    *display: inline; /* IE < 8: fake inline-block */
+    zoom: 1;
     letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
@@ -1140,6 +1207,9 @@ a.pure-button-selected {
     width: 95.8333%;
 }
 
+/*csslint adjoining-classes:false, outline-none:false*/
+/*TODO: Remove this lint rule override after a refactor of this code.*/
+
 .pure-menu ul {
     position: absolute;
     visibility: hidden;
@@ -1168,9 +1238,14 @@ a.pure-button-selected {
     visibility: visible;
 }
 
+.pure-menu-open > ul:focus {
+    outline: 0;
+}
+
 .pure-menu li { position: relative; }
 
-.pure-menu a, .pure-menu .pure-menu-heading {
+.pure-menu a,
+.pure-menu .pure-menu-heading {
     display: block;
     color: inherit;
     line-height: 1.5em;
@@ -1181,16 +1256,17 @@ a.pure-button-selected {
 
 .pure-menu.pure-menu-horizontal > .pure-menu-heading {
     display: inline-block;
-    margin: 0;
-    zoom: 1;
     *display: inline;
+    zoom: 1;
+    margin: 0;
     vertical-align: middle;
 }
 .pure-menu.pure-menu-horizontal > ul {
     display: inline-block;
-    zoom: 1;
     *display: inline;
+    zoom: 1;
     vertical-align: middle;
+    height: 2.4em;
 }
 
 .pure-menu li a { padding: 5px 20px; }
@@ -1198,13 +1274,14 @@ a.pure-button-selected {
 .pure-menu-can-have-children > .pure-menu-label:after {
     content: '\25B8';
     float: right;
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif; /* These specific fonts have the Unicode char we need. */
+    /* These specific fonts have the Unicode char we need. */
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
     margin-right: -20px;
     margin-top: -1px;
 }
 
 .pure-menu-can-have-children > .pure-menu-label {
-    padding-right:30px;
+    padding-right: 30px;
 }
 
 .pure-menu-separator {
@@ -1216,13 +1293,15 @@ a.pure-button-selected {
     overflow: hidden;
 }
 
-.pure-menu-hidden { display: none; }
+.pure-menu-hidden {
+    display: none;
+}
 
 /* FIXED MENU */
 .pure-menu-fixed {
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
 }
 
@@ -1232,12 +1311,12 @@ a.pure-button-selected {
 /* Initial menus should be inline-block so that they are horizontal */
 .pure-menu-horizontal li {
     display: inline-block;
-    zoom: 1;
     *display: inline;
+    zoom: 1;
     vertical-align: middle;
 }
 
-/* Submenus should still be display:block; */
+/* Submenus should still be display: block; */
 .pure-menu-horizontal li li {
     display: block;
 }
@@ -1248,23 +1327,40 @@ a.pure-button-selected {
 }
 /*Add extra padding to elements that have the arrow so that the hover looks nice */
 .pure-menu-horizontal > .pure-menu-children > .pure-menu-can-have-children > .pure-menu-label {
-    padding-right:30px;
+    padding-right: 30px;
 }
 
+/* Adjusting separator for vertical menus */
+.pure-menu-horizontal li.pure-menu-separator {
+	height: 50%;
+	width: 1px;
+	margin: 0 7px;
+}
+
+/* Submenus should be horizontal separator again */
+.pure-menu-horizontal li li.pure-menu-separator {
+	height: 1px;
+	width: auto;
+	margin: 7px 2px;
+}
+
+
+/*csslint adjoining-classes:false*/
+/*TODO: Remove this lint rule override after a refactor of this code.*/
 
 /* MAIN MENU STYLING */
 
 .pure-menu.pure-menu-open,
 .pure-menu.pure-menu-horizontal li .pure-menu-children {
-    background: #ffffff; /* Old browsers */
+    background: #fff; /* Old browsers */
     border: 1px solid #b7b7b7;
 }
 
 /* remove borders for horizontal menus */
-.pure-menu.pure-menu-horizontal, .pure-menu.pure-menu-horizontal .pure-menu-heading {
+.pure-menu.pure-menu-horizontal,
+.pure-menu.pure-menu-horizontal .pure-menu-heading {
     border: none;
 }
-
 
 
 /* LINK STYLES */
@@ -1285,15 +1381,20 @@ a.pure-button-selected {
     color: #fff;
 }
 
+/* Focus style for a dropdown menu-item when the parent has been opened */
+.pure-menu .pure-menu-open {
+    background: #dedede;
+}
 
 
-/* HOVER STATES */
-.pure-menu li a:hover {
+.pure-menu li a:hover,
+.pure-menu li a:focus {
     background: #eee;
 }
 
 /* DISABLED STATES */
-.pure-menu li.pure-menu-disabled a:hover {
+.pure-menu li.pure-menu-disabled a:hover,
+.pure-menu li.pure-menu-disabled a:focus {
     background: #fff;
     color: #bfbfbf;
 }
@@ -1313,8 +1414,8 @@ a.pure-button-selected {
 .pure-menu .pure-menu-heading {
     color: #565d64;
     text-transform: uppercase;
-    font-size:90%;
-    margin-top:0.5em;
+    font-size: 90%;
+    margin-top: 0.5em;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #dfdfdf;
@@ -1331,6 +1432,9 @@ a.pure-button-selected {
     border-bottom: 1px solid #b7b7b7;
 }
 
+/*csslint box-model:false*/
+/*TODO: Remove this lint rule override after a refactor of this code.*/
+
 .pure-paginator {
     list-style: none;
     margin: 0;
@@ -1339,8 +1443,7 @@ a.pure-button-selected {
 .pure-paginator li {
     display: inline-block;
     *display: inline;
-    /* IE 7 inline-block hack */
-    *zoom: 1;
+    zoom: 1;
     margin: 0 -0.35em 0 0;
 }
 .pure-paginator .pure-button {
@@ -1352,9 +1455,10 @@ a.pure-button-selected {
 .pure-paginator .pure-button:focus {
     outline-style: none;
 }
-.pure-paginator .prev, .pure-paginator .next {
+.pure-paginator .prev,
+.pure-paginator .next {
     color: #C0C1C3;
-    text-shadow: 0px -1px 0px rgba(0,0,0, 0.45);
+    text-shadow: 0 -1px 0 rgba(0,0,0, 0.45);
 }
 .pure-paginator .prev {
     border-radius: 2px 0 0 2px;
@@ -1363,14 +1467,6 @@ a.pure-button-selected {
     border-radius: 0 2px 2px 0;
 }
 
-/*
-* CSS TABLES
-* ==========
-* Simple CSS for HTML Tables
-* Author: tilomitra
-*/
-
-/* foundational CSS */
 .pure-table {
     /* Remove spacing between table cells (from Normalize.css) */
     border-collapse: collapse;
@@ -1411,7 +1507,7 @@ a.pure-button-selected {
 /*
 striping:
    even - #fff (white)
-   odd  - #edf5ff (light blue)
+   odd  - #f2f2f2 (light gray)
 */
 .pure-table td {
     background-color: transparent;
@@ -1427,7 +1523,7 @@ striping:
 
 /* BORDERED TABLES */
 .pure-table-bordered td {
-    border-bottom:1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
 }
 .pure-table-bordered tbody > tr:last-child td,
 .pure-table-horizontal tbody > tr:last-child td {
@@ -1440,7 +1536,7 @@ striping:
 .pure-table-horizontal td,
 .pure-table-horizontal th {
     border-width: 0 0 1px 0;
-    border-bottom:1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
 }
 .pure-table-horizontal tbody > tr:last-child td {
     border-bottom-width: 0;
