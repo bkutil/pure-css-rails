@@ -1,6 +1,6 @@
 # Pure CSS for Rails Asset Pipeline
 
-Based on [pure.css](http://purecss.io/) version 0.2.0.
+Based on [pure.css](http://purecss.io/) version 0.2.1.
 
 ## Install
 
@@ -20,6 +20,15 @@ Based on [pure.css](http://purecss.io/) version 0.2.0.
 4. Profit!
 
 You don't need to add `normalize.css`, it is already included.
+
+## History
+
+Since 0.2.1, the gem and the pure.css versions match, so it is easier to pin
+the library to a specific version via the Gemfile.
+
+0.2.1 - Pure 0.2.1
+0.0.2 - Pure 0.2.0
+0.0.1 - Pure 0.1.0
 
 ## Contribute
 

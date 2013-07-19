@@ -1,5 +1,5 @@
 /*!
-Pure v0.2.0
+Pure v0.2.1
 Copyright 2013 Yahoo! Inc. All rights reserved.
 Licensed under the BSD License.
 https://github.com/yui/pure/blob/master/LICENSE.md
@@ -867,15 +867,23 @@ a.pure-button-selected {
 .pure-form input[type="tel"][disabled],
 .pure-form input[type="color"][disabled],
 .pure-form select[disabled],
-.pure-form textarea[disabled],
-.pure-form input[readonly],
-.pure-form select[readonly],
-.pure-form textarea[readonly] {
+.pure-form textarea[disabled] {
     cursor: not-allowed;
     background-color: #eaeded;
     color: #cad2d3;
-    border-color: transparent;
 }
+.pure-form input[readonly],
+.pure-form select[readonly],
+.pure-form textarea[readonly],
+.pure-form input[readonly]:focus,
+.pure-form select[readonly]:focus,
+.pure-form textarea[readonly]:focus {
+    background: #eee; /* menu hover bg color */
+    color: #777; /* menu text color */
+    border-color: #ccc;
+}
+
+
 .pure-form input:focus:invalid,
 .pure-form textarea:focus:invalid,
 .pure-form select:focus:invalid {
@@ -901,7 +909,6 @@ a.pure-button-selected {
 }
 .pure-form label {
     margin: 0.5em 0 0.2em;
-    color: #999;
     font-size: 90%;
 }
 .pure-form fieldset {
@@ -934,8 +941,10 @@ a.pure-button-selected {
 .pure-form-stacked input[type="tel"],
 .pure-form-stacked input[type="color"],
 .pure-form-stacked select,
-.pure-form-stacked label {
+.pure-form-stacked label,
+.pure-form-stacked textarea {
     display: block;
+    margin: 0.25em 0;
 }
 
 .pure-form-aligned input,
@@ -966,9 +975,10 @@ a.pure-button-selected {
 }
 
 /* Rounded Inputs */
+.pure-form input.pure-input-rounded,
 .pure-form .pure-input-rounded {
-    border-radius: 20px;
-    padding-left: 1em;
+    border-radius: 2em;
+    padding: 0.5em 1em;
 }
 
 /* Grouped Inputs */
@@ -1057,19 +1067,19 @@ a.pure-button-selected {
     }
 
     .pure-group input[type="text"],
-    .pure-form input[type="password"],
-    .pure-form input[type="email"],
-    .pure-form input[type="url"],
-    .pure-form input[type="date"],
-    .pure-form input[type="month"],
-    .pure-form input[type="time"],
-    .pure-form input[type="datetime"],
-    .pure-form input[type="datetime-local"],
-    .pure-form input[type="week"],
-    .pure-form input[type="number"],
-    .pure-form input[type="search"],
-    .pure-form input[type="tel"],
-    .pure-form input[type="color"] {
+    .pure-group input[type="password"],
+    .pure-group input[type="email"],
+    .pure-group input[type="url"],
+    .pure-group input[type="date"],
+    .pure-group input[type="month"],
+    .pure-group input[type="time"],
+    .pure-group input[type="datetime"],
+    .pure-group input[type="datetime-local"],
+    .pure-group input[type="week"],
+    .pure-group input[type="number"],
+    .pure-group input[type="search"],
+    .pure-group input[type="tel"],
+    .pure-group input[type="color"] {
         margin-bottom: 0;
     }
 
@@ -1159,7 +1169,7 @@ a.pure-button-selected {
 }
 
 .pure-u-1 {
-    display: block;
+    width: 100%;
 }
 
 .pure-u-1-2 {
@@ -1199,7 +1209,7 @@ a.pure-button-selected {
 }
 
 .pure-u-1-6 {
-    width: 16.656%;
+    width: 16.666%;
 }
 
 .pure-u-5-6 {
@@ -1560,24 +1570,45 @@ a.pure-button-selected {
 /*csslint box-model:false*/
 /*TODO: Remove this lint rule override after a refactor of this code.*/
 
+
 .pure-paginator {
+
+    /* `pure-g` Grid styles */
+    letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
+    *letter-spacing: normal; /* reset IE < 8 */
+    *word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
+    text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
+
+    /* `pure-paginator` Specific styles */
     list-style: none;
     margin: 0;
     padding: 0;
 }
+.opera-only :-o-prefocus,
+.pure-paginator {
+    word-spacing: -0.43em;
+}
+
+/* `pure-u` Grid styles */
 .pure-paginator li {
     display: inline-block;
-    *display: inline;
+    *display: inline; /* IE < 8: fake inline-block */
     zoom: 1;
-    margin: 0 -0.35em 0 0;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto;
 }
+
+
 .pure-paginator .pure-button {
     border-radius: 0;
     padding: 0.8em 1.4em;
     vertical-align: top;
     height: 1.1em;
 }
-.pure-paginator .pure-button:focus {
+.pure-paginator .pure-button:focus,
+.pure-paginator .pure-button:active {
     outline-style: none;
 }
 .pure-paginator .prev,
@@ -1637,7 +1668,6 @@ a.pure-button-selected {
     color: #000;
     text-align: left;
     vertical-align: bottom;
-    white-space: nowrap;
 }
 
 /*
