@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Balazs Kutil"]
   gem.email         = ["balazs@kutilovi.cz"]
   gem.description   = %q{Pure CSS for Rails Asset Pipeline}
+  gem.license       = 'MIT'
   gem.summary       = %q{Pure CSS for Rails Asset Pipeline}
   gem.homepage      = "https://github.com/bkutil/pure-css-rails"
   gem.signing_key   = '/home/balazs/documents/keys/gem-private_key.pem'
