@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Pure CSS for Rails Asset Pipeline}
   gem.homepage      = "https://github.com/bkutil/pure-css-rails"
   gem.signing_key   = '/home/balazs/documents/keys/gem-private_key.pem'
-  gem.cert_chain    = ['gem-public_cert.pem']
+  gem.cert_chain    = ['bkutil.pem']
 
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["lib"]
