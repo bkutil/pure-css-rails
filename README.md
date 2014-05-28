@@ -1,6 +1,6 @@
 # Pure CSS for Rails Asset Pipeline
 
-Based on [pure.css](http://purecss.io/) version 0.4.2.
+Based on [pure.css](http://purecss.io/) version 0.5.0.
 
 ## Install
 
