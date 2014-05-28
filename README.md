@@ -21,6 +21,13 @@ Based on [pure.css](http://purecss.io/) version 0.5.0.
 
 You don't need to add `normalize.css`, it is already included.
 
+### Responsive grids
+
+Since version v0.5.0, purecss includes separate stylesheets for responsive
+grids.  Thus, `*= require 'grids-responsive` to application.css is needed for
+responsive grids to work. More details can be found on [the purecss home
+page](http://purecss.io/grids/).
+
 ## History
 
 Since 0.2.1, the gem and the pure.css versions match, so it is easier to pin
