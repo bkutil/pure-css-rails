@@ -15,7 +15,7 @@ Based on [pure.css](http://purecss.io/) version 0.6.0.
 3. Add `pure` to application.css (Use `pure-nr` for non-responsive version)
 
 
-    `*= require pure`
+    `//= require pure`
 
 4. Profit!
 
