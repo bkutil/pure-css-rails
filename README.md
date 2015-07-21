@@ -24,7 +24,7 @@ You don't need to add `normalize.css`, it is already included.
 ### Responsive grids
 
 Since version v0.5.0, purecss includes separate stylesheets for responsive
-grids.  Thus, `//= require 'grids-responsive` to application.css is needed for
+grids.  Thus, `//= require grids-responsive` to application.css is needed for
 responsive grids to work. More details can be found on [the purecss home
 page](http://purecss.io/grids/).
 
